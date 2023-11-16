@@ -12,17 +12,18 @@ struct VehicleListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var vehicles: [Vehicle]
     
-    @State private var action: VehicleAction?
-    @State private var vehicleId: Vehicle.ID?
+    @StateObject private var model = Model();
     @State private var columnVisibility = NavigationSplitViewVisibility.automatic
+    @State private var isEditing = false;
     
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
-            List(vehicles, selection: $vehicleId) { vehicle in
+            List(vehicles, selection: $model.vehicleId) { vehicle in
                 Text(vehicle.make)
                     .swipeActions(edge: .trailing){
                         Button(){
-                            //TODO: 
+                            model.vehicleId = vehicle.id
+                            openEditModel();
                         } label: {
                             Label("Edit", systemImage: "pencil")
                         }
@@ -35,23 +36,47 @@ struct VehicleListView: View {
                         }
                     }
             }
+            .navigationTitle("Your Vehicle")
             .toolbar {
                 ToolbarItem {
-                    Button(action: addItem) {
+                    Button(action: openEditModel) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
             }
         } detail: {
-            switch action {
-            case .add:
-                Text("Adding")
-            case .edit:
-                if let vehicle = vehicles.first(where: {$0.id == vehicleId}){
-                    Text("Editing \(vehicle.year) \(vehicle.make) \(vehicle.model)")
-                }
-            default:
+            if model.vehicleId != nil {
+                Text("Details for selected")
+            } else {
+                
                 Text("Select a Vehicle")
+            }
+            
+        }
+        .sheet(isPresented: $isEditing){
+            NavigationStack{
+                if let vehicle = vehicles.first(where: {$0.id == model.vehicleId}){
+                    VehicleAddView(vehicle: vehicle, onClose: closeModal)
+                        .navigationTitle("Edit \(vehicle.make)")
+                        .toolbar {
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button("Cancel") {
+                                    isEditing = false
+                                }
+                            }
+                        }
+                } else {
+                    VehicleAddView(vehicle: Vehicle(make: "", model: "", year: "", isPrimary: false), onClose: closeModal)
+                        .navigationTitle("Add Vehicle")
+                        .toolbar {
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button("Cancel") {
+                                    isEditing = false
+                                }
+                            }
+                        }
+                }
+                
             }
             
         }
@@ -60,24 +85,22 @@ struct VehicleListView: View {
     private func deleteItem(id: Vehicle.ID) {
         withAnimation {
             if let vehicle = vehicles.first(where: {$0.id == id}) {
-                modelContext.delete(vehicle);
+                modelContext.delete(vehicle)
             }
         }
     }
     
-    private func addItem() {
+    private func openEditModel() {
         columnVisibility = .detailOnly;
-        withAnimation {
-            let newItem = Vehicle(make: "", model: "", year: 0, isPrimary: false)
-            modelContext.insert(newItem)
-            vehicleId = newItem.id
-        }
-        action = .add;
+        isEditing = true;
     }
     
-    enum VehicleAction {
-        case add
-        case edit
+    private func closeModal() {
+        isEditing = false;
+    }
+    
+    private class Model : ObservableObject {
+        var vehicleId: Vehicle.ID?
     }
 }
 

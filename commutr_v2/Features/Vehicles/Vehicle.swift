@@ -12,10 +12,10 @@ import SwiftData
 final class Vehicle : Identifiable {
     var make: String;
     var model: String;
-    var year: Int;
+    var year: String;
     var isPrimary: Bool;
     
-    init(make: String, model: String, year: Int, isPrimary: Bool){
+    init(make: String, model: String, year: String, isPrimary: Bool){
         self.make = make;
         self.model = model;
         self.year = year;
