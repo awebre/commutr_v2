@@ -14,34 +14,14 @@ struct VehicleListView: View {
     
     @State private var columnVisibility = NavigationSplitViewVisibility.automatic
     @State private var isEditing = false
+    @State var confirmDelete = false
     @State private var vehicleId: Vehicle.ID?
     
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
             List(vehicles, selection: $vehicleId) { vehicle in
-                HStack{
-                    Text("\(vehicle.getName())")
-                    if vehicle.isPrimary {
-                        Circle()
-                            .fill(.blue)
-                            .frame(width: 10, height: 10)
-                    }
-                }
-                .swipeActions(edge: .trailing){
-                    Button(){
-                        vehicleId = vehicle.id
-                        openEditModal()
-                    } label: {
-                        Label("Edit", systemImage: "pencil")
-                    }
-                }
-                .swipeActions(edge: .leading){
-                    Button(role: .destructive){
-                        deleteItem(id: vehicle.id)
-                    } label: {
-                        Label("Delete", systemImage: "trash")
-                    }
-                }
+                VehicleListItem(vehicle: vehicle, edit: {openEditModal(id: vehicle.id)}, delete: {deleteItem(id: vehicle.id)})
+                
             }
             .navigationTitle("Your Vehicles")
             .toolbar {
@@ -59,6 +39,10 @@ struct VehicleListView: View {
                     Text("Select a Vehicle")
                 }
             }
+        }
+        .onAppear(){
+            // Navigate to the details page for the primary on first appearing
+            vehicleId = vehicles.first(where: {$0.isPrimary})?.id
         }
         .sheet(isPresented: $isEditing){
             NavigationStack{
@@ -93,14 +77,19 @@ struct VehicleListView: View {
         }
     }
     
-    private func openEditModal() {
-        columnVisibility = .detailOnly
-        isEditing = true
+    private func openEditModal(id: Vehicle.ID) {
+        vehicleId = id
+        openModal()
     }
     
     private func openAddModal() {
         vehicleId = nil
-        openEditModal()
+        openModal()
+    }
+    
+    private func openModal() {
+        columnVisibility = .detailOnly
+        isEditing = true
     }
     
     private func closeModal() {
