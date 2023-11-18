@@ -12,57 +12,62 @@ struct VehicleListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var vehicles: [Vehicle]
     
-    @StateObject private var model = Model();
     @State private var columnVisibility = NavigationSplitViewVisibility.automatic
-    @State private var isEditing = false;
+    @State private var isEditing = false
+    @State private var vehicleId: Vehicle.ID?
     
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
-            List(vehicles, selection: $model.vehicleId) { vehicle in
-                Text(vehicle.make)
-                    .swipeActions(edge: .trailing){
-                        Button(){
-                            model.vehicleId = vehicle.id
-                            openEditModel();
-                        } label: {
-                            Label("Edit", systemImage: "pencil")
-                        }
+            List(vehicles, selection: $vehicleId) { vehicle in
+                HStack{
+                    Text("\(vehicle.getName())")
+                    if vehicle.isPrimary {
+                        Circle()
+                            .fill(.blue)
+                            .frame(width: 10, height: 10)
                     }
-                    .swipeActions(edge: .leading){
-                        Button(role: .destructive){
-                            deleteItem(id: vehicle.id)
-                        } label: {
-                            Label("Delete", systemImage: "trash")
-                        }
+                }
+                .swipeActions(edge: .trailing){
+                    Button(){
+                        vehicleId = vehicle.id
+                        openEditModal()
+                    } label: {
+                        Label("Edit", systemImage: "pencil")
                     }
+                }
+                .swipeActions(edge: .leading){
+                    Button(role: .destructive){
+                        deleteItem(id: vehicle.id)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+                }
             }
-            .navigationTitle("Your Vehicle")
+            .navigationTitle("Your Vehicles")
             .toolbar {
                 ToolbarItem {
-                    Button(action: openEditModel) {
+                    Button(action: openAddModal) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
             }
         } detail: {
-            if model.vehicleId != nil {
-                Text("Details for selected")
-            } else {
-                
-                Text("Select a Vehicle")
+            ZStack{
+                if vehicleId != nil {
+                    Text("Details for selected")
+                } else {
+                    Text("Select a Vehicle")
+                }
             }
-            
         }
         .sheet(isPresented: $isEditing){
             NavigationStack{
-                if let vehicle = vehicles.first(where: {$0.id == model.vehicleId}){
+                if let vehicle = vehicles.first(where: {$0.id == vehicleId}){
                     VehicleAddView(vehicle: vehicle, onClose: closeModal)
-                        .navigationTitle("Edit \(vehicle.make)")
+                        .navigationTitle("Edit \(vehicle.year) \(vehicle.make) \(vehicle.model)")
                         .toolbar {
                             ToolbarItem(placement: .cancellationAction) {
-                                Button("Cancel") {
-                                    isEditing = false
-                                }
+                                Button("Cancel", action: closeModal)
                             }
                         }
                 } else {
@@ -70,9 +75,7 @@ struct VehicleListView: View {
                         .navigationTitle("Add Vehicle")
                         .toolbar {
                             ToolbarItem(placement: .cancellationAction) {
-                                Button("Cancel") {
-                                    isEditing = false
-                                }
+                                Button("Cancel", action: closeModal)
                             }
                         }
                 }
@@ -90,13 +93,19 @@ struct VehicleListView: View {
         }
     }
     
-    private func openEditModel() {
-        columnVisibility = .detailOnly;
-        isEditing = true;
+    private func openEditModal() {
+        columnVisibility = .detailOnly
+        isEditing = true
+    }
+    
+    private func openAddModal() {
+        vehicleId = nil
+        openEditModal()
     }
     
     private func closeModal() {
-        isEditing = false;
+        vehicleId = nil
+        isEditing = false
     }
     
     private class Model : ObservableObject {

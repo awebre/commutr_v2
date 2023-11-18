@@ -18,7 +18,11 @@ struct VehicleAddView: View {
     var onClose: () -> Void;
     var body: some View {
         Form {
+            TextField("Year", text: $model.year)
+                .keyboardType(.numberPad) //TODO: actual validation of this field
             TextField("Make", text: $model.make)
+            TextField("Model", text: $model.model)
+            Toggle("Primary", isOn: $model.isPrimary)
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -39,6 +43,13 @@ struct VehicleAddView: View {
         vehicle.make = model.make
         vehicle.model = model.model
         vehicle.year = model.year
+        
+        if(model.isPrimary){
+            vehicles.filter({ $0.isPrimary }).forEach({
+                $0.isPrimary = false
+            })
+        }
+        
         vehicle.isPrimary = model.isPrimary
         if vehicles.first(where: {$0.id == vehicle.id}) == nil{
             modelContext.insert(vehicle)

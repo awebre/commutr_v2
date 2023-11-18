@@ -10,15 +10,19 @@ import SwiftData
 
 @Model
 final class Vehicle : Identifiable {
-    var make: String;
-    var model: String;
-    var year: String;
-    var isPrimary: Bool;
+    var make: String
+    var model: String
+    var year: String
+    var isPrimary: Bool
     
     init(make: String, model: String, year: String, isPrimary: Bool){
-        self.make = make;
-        self.model = model;
-        self.year = year;
-        self.isPrimary = isPrimary;
+        self.make = make
+        self.model = model
+        self.year = year
+        self.isPrimary = isPrimary
+    }
+    
+    public func getName() -> String {
+        return "\(self.year) \(self.make) \(self.model)"
     }
 }
