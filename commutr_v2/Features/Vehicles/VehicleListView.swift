@@ -16,10 +16,11 @@ struct VehicleListView: View {
     @State private var isEditing = false
     @State var confirmDelete = false
     @State private var vehicleId: Vehicle.ID?
+    @State private var detailsVehicleId: Vehicle.ID?
     
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
-            List(vehicles, selection: $vehicleId) { vehicle in
+            List(vehicles, selection: $detailsVehicleId) { vehicle in
                 VehicleListItem(vehicle: vehicle, edit: {openEditModal(id: vehicle.id)}, delete: {deleteItem(id: vehicle.id)})
                 
             }
@@ -31,10 +32,14 @@ struct VehicleListView: View {
                     }
                 }
             }
+            .confirmationDialog("Delete this Vehicle?", isPresented: $confirmDelete) {
+                Button("Delete this vehicle", role: .destructive, action: confirmDeleteItem)
+                Button("Cancel", role: .cancel, action: cancelDelete)
+            }
         } detail: {
             ZStack{
-                if vehicleId != nil {
-                    Text("Details for selected")
+                if let vehicle = vehicles.first(where: {$0.id == detailsVehicleId}) {
+                    VehicleDetailView(vehicle: vehicle)
                 } else {
                     Text("Select a Vehicle")
                 }
@@ -42,13 +47,13 @@ struct VehicleListView: View {
         }
         .onAppear(){
             // Navigate to the details page for the primary on first appearing
-            vehicleId = vehicles.first(where: {$0.isPrimary})?.id
+            detailsVehicleId = vehicles.first(where: {$0.isPrimary ?? false})?.id
         }
         .sheet(isPresented: $isEditing){
             NavigationStack{
-                if let vehicle = vehicles.first(where: {$0.id == vehicleId}){
+                if let vehicle = vehicles.first(where: { $0.id == vehicleId }){
                     VehicleAddView(vehicle: vehicle, onClose: closeModal)
-                        .navigationTitle("Edit \(vehicle.year) \(vehicle.make) \(vehicle.model)")
+                        .navigationTitle("Edit \(vehicle.year ?? "") \(vehicle.make ?? "") \(vehicle.model ?? "")")
                         .toolbar {
                             ToolbarItem(placement: .cancellationAction) {
                                 Button("Cancel", action: closeModal)
@@ -70,11 +75,22 @@ struct VehicleListView: View {
     }
     
     private func deleteItem(id: Vehicle.ID) {
+        vehicleId = id
+        confirmDelete = true
+    }
+    
+    private func confirmDeleteItem() {
         withAnimation {
-            if let vehicle = vehicles.first(where: {$0.id == id}) {
+            if let vehicle = vehicles.first(where: {$0.id == vehicleId}) {
                 modelContext.delete(vehicle)
             }
         }
+        cancelDelete()
+    }
+    
+    private func cancelDelete() {
+        vehicleId = nil
+        confirmDelete = false
     }
     
     private func openEditModal(id: Vehicle.ID) {

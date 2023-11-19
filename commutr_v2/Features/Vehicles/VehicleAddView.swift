@@ -31,11 +31,16 @@ struct VehicleAddView: View {
             }
         }
         .onAppear(){
+            print(vehicle.id)
             model.id = vehicle.id
-            model.make = vehicle.make
-            model.model = vehicle.model
-            model.year = vehicle.year
-            model.isPrimary = vehicle.isPrimary
+            print(vehicle.make)
+            model.make = vehicle.make ?? ""
+            print(vehicle.model)
+            model.model = vehicle.model ?? ""
+            print(vehicle.year)
+            model.year = vehicle.year ?? ""
+            print(vehicle.isPrimary)
+            model.isPrimary = vehicle.isPrimary ?? false
         }
     }
     
@@ -45,7 +50,7 @@ struct VehicleAddView: View {
         vehicle.year = model.year
         
         if(model.isPrimary){
-            vehicles.filter({ $0.isPrimary }).forEach({
+            vehicles.filter({ $0.isPrimary ?? false }).forEach({
                 $0.isPrimary = false
             })
         }

@@ -13,6 +13,7 @@ struct commutr_v2App: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Vehicle.self,
+            FillUp.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

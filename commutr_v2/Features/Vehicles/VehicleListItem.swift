@@ -15,7 +15,7 @@ struct VehicleListItem: View {
     var body: some View {
         HStack{
             Text("\(vehicle.getName())")
-            if vehicle.isPrimary {
+            if vehicle.isPrimary == true {
                 Circle()
                     .fill(.blue)
                     .frame(width: 10, height: 10)
