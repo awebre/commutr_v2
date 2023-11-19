@@ -12,9 +12,23 @@ struct VehicleDetailView: View {
     var vehicle: Vehicle
     
     var body: some View {
-        VStack {
-            
+        ZStack {
+            VStack() {
+
+            }
+            VStack {
+                Spacer()
+                Button(action: { }) {
+                        Text("Add Fill Up")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                    }
+                    .foregroundColor(.white)
+                    .background(.teal)
+                    .cornerRadius(10)
+            }.padding(.horizontal, 20)
         }.navigationTitle("\(vehicle.getName())")
+
     }
 }
 
