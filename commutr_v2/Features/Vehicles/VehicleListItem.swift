@@ -17,7 +17,7 @@ struct VehicleListItem: View {
             Text("\(vehicle.getName())")
             if vehicle.isPrimary == true {
                 Circle()
-                    .fill(.blue)
+                    .fill(.accent)
                     .frame(width: 10, height: 10)
             }
         }
@@ -26,7 +26,7 @@ struct VehicleListItem: View {
                 edit()
             } label: {
                 Label("Edit", systemImage: "pencil")
-            }
+            }.tint(.accent)
         }
         .swipeActions(edge: .leading){
             Button(role: .destructive){
