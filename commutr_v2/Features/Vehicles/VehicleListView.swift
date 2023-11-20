@@ -51,7 +51,7 @@ struct VehicleListView: View {
         }
         .sheet(isPresented: $isEditing){
             NavigationStack{
-                VehicleAddView(vehicleId: $vehicleId, onClose: closeModal)
+                VehicleFormView(vehicleId: $vehicleId, onClose: closeModal)
             }
             
         }

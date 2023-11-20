@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct VehicleAddView: View {
+struct VehicleFormView: View {
     @Binding var vehicleId: Vehicle.ID?
     @Environment(\.modelContext) private var modelContext
     @Query private var vehicles: [Vehicle]
@@ -87,7 +87,7 @@ class VehicleFormModel : ObservableObject {
         var id: Vehicle.ID?
         @State var vehicleId: Vehicle.ID?
         var body: some View {
-            VehicleAddView(vehicleId: $vehicleId, onClose: {})
+            VehicleFormView(vehicleId: $vehicleId, onClose: {})
                 .onAppear(){
                     vehicleId = id
                 }
