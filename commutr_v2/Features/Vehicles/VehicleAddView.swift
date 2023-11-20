@@ -9,10 +9,10 @@ import SwiftUI
 import SwiftData
 
 struct VehicleAddView: View {
+    @Binding var vehicleId: Vehicle.ID?
     @Environment(\.modelContext) private var modelContext
     @Query private var vehicles: [Vehicle]
     
-    var vehicle: Vehicle;
     @StateObject private var model = VehicleFormModel();
     
     var onClose: () -> Void;
@@ -25,40 +25,45 @@ struct VehicleAddView: View {
             Toggle("Primary", isOn: $model.isPrimary)
         }
         .navigationBarBackButtonHidden(true)
+        .navigationTitle(vehicleId != nil ? "Edit \(model.make) \(model.model) \(model.year)" : "Add Vehicle")
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel", action: onClose)
+            }
+        }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Save", action: save)
             }
         }
         .onAppear(){
-            print(vehicle.id)
+            let vehicle = vehicles.first(where: { $0.id == vehicleId }) ?? Vehicle(make: "", model: "", year: "", isPrimary: false)
             model.id = vehicle.id
-            print(vehicle.make)
             model.make = vehicle.make ?? ""
-            print(vehicle.model)
             model.model = vehicle.model ?? ""
-            print(vehicle.year)
             model.year = vehicle.year ?? ""
-            print(vehicle.isPrimary)
             model.isPrimary = vehicle.isPrimary ?? false
         }
     }
     
     private func save(){
-        vehicle.make = model.make
-        vehicle.model = model.model
-        vehicle.year = model.year
+        
+        if let vehicle = vehicles.first(where: { $0.id == model.id }){
+            vehicle.make = model.make
+            vehicle.model = model.model
+            vehicle.year = model.year
+            vehicle.isPrimary = model.isPrimary
+        } else {
+            modelContext.insert(Vehicle(make: model.make, model: model.model, year: model.year, isPrimary: model.isPrimary))
+        }
+
         
         if(model.isPrimary){
-            vehicles.filter({ $0.isPrimary ?? false }).forEach({
+            vehicles.filter({ $0.id != model.id && ($0.isPrimary ?? false) }).forEach({
                 $0.isPrimary = false
             })
         }
         
-        vehicle.isPrimary = model.isPrimary
-        if vehicles.first(where: {$0.id == vehicle.id}) == nil{
-            modelContext.insert(vehicle)
-        }
         onClose()
     }
 }
@@ -72,11 +77,22 @@ class VehicleFormModel : ObservableObject {
 }
 
 #Preview {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Vehicle.self, configurations: config)
+    
+    let vehicle = Vehicle(make: "Honda", model: "Accord", year: "2023", isPrimary: true)
+    container.mainContext.insert(vehicle);
+    
     struct Preview: View {
+        var id: Vehicle.ID?
+        @State var vehicleId: Vehicle.ID?
         var body: some View {
-            VehicleAddView(vehicle: Vehicle(make: "", model: "", year: "", isPrimary: false), onClose: {}).modelContainer(for: Vehicle.self, inMemory: true)
+            VehicleAddView(vehicleId: $vehicleId, onClose: {})
+                .onAppear(){
+                    vehicleId = id
+                }
         }
     }
     
-    return Preview()
+    return Preview(id: vehicle.id).modelContainer(container)
 }

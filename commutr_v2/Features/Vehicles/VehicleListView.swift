@@ -51,24 +51,7 @@ struct VehicleListView: View {
         }
         .sheet(isPresented: $isEditing){
             NavigationStack{
-                if let vehicle = vehicles.first(where: { $0.id == vehicleId }){
-                    VehicleAddView(vehicle: vehicle, onClose: closeModal)
-                        .navigationTitle("Edit \(vehicle.year ?? "") \(vehicle.make ?? "") \(vehicle.model ?? "")")
-                        .toolbar {
-                            ToolbarItem(placement: .cancellationAction) {
-                                Button("Cancel", action: closeModal)
-                            }
-                        }
-                } else {
-                    VehicleAddView(vehicle: Vehicle(make: "", model: "", year: "", isPrimary: false), onClose: closeModal)
-                        .navigationTitle("Add Vehicle")
-                        .toolbar {
-                            ToolbarItem(placement: .cancellationAction) {
-                                Button("Cancel", action: closeModal)
-                            }
-                        }
-                }
-                
+                VehicleAddView(vehicleId: $vehicleId, onClose: closeModal)
             }
             
         }
