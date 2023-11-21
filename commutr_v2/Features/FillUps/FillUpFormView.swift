@@ -14,6 +14,7 @@ struct FillUpFormView: View {
     }
     
     @Binding var fillUpId: FillUp.ID?
+    var vehicle: Vehicle
     var onClose: () -> Void
     
     @Environment(\.modelContext) private var modelContext
@@ -92,6 +93,29 @@ struct FillUpFormView: View {
     }
     
     private func save(){
+        if let existing = fillUps.first(where: { $0.id == fillUpId }){
+            existing.date = model.date
+            existing.distance = model.distance
+            existing.distanceUnit = model.distanceUnit
+            existing.fuelAmount = model.fuelAmount
+            existing.fuelUnit = model.fuelUnit
+            existing.pricePerFuelAmount = model.pricePerFuelAmount
+            existing.priceUnit = model.priceUnit
+            existing.notes = model.notes
+        } else {
+            let fillup = FillUp(
+                date: model.date,
+                distance: model.distance,
+                distanceUnit: model.distanceUnit,
+                fuelAmount: model.fuelAmount,
+                fuelUnit: model.fuelUnit,
+                pricePerFuelAmount: model.pricePerFuelAmount,
+                priceUnit: model.priceUnit,
+                notes: model.notes
+            )
+            fillup.vehicle = vehicle
+            modelContext.insert(fillup)
+        }
         onClose()
     }
 }

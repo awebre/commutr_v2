@@ -17,7 +17,7 @@ struct VehicleDetailView: View {
     var body: some View {
         ZStack {
             VStack() {
-                
+                FillUpsTopThree(vehicleId: vehicle.id, edit: editFillUp)
             }
             VStack {
                 Spacer()
@@ -34,12 +34,17 @@ struct VehicleDetailView: View {
         .navigationTitle("\(vehicle.getName())")
         .sheet(isPresented: $isEditing){
             NavigationStack{
-                FillUpFormView(fillUpId: $fillUpId, onClose: closeModal)
+                FillUpFormView(fillUpId: $fillUpId, vehicle: vehicle, onClose: closeModal)
             }
         }
     }
     
-    private func addFillUp(){
+    private func editFillUp(id: FillUp.ID) {
+        fillUpId = id
+        isEditing = true
+    }
+    
+    private func addFillUp() {
         fillUpId = nil
         isEditing = true
     }
