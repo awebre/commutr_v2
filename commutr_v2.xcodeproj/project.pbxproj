@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F33144B2B0DA861003934B3 /* MathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F33144A2B0DA861003934B3 /* MathUtils.swift */; };
 		4F72948F2B09228300114DC1 /* VehicleListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F72948E2B09228300114DC1 /* VehicleListItem.swift */; };
 		4F7294912B096BE900114DC1 /* VehicleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7294902B096BE900114DC1 /* VehicleDetailView.swift */; };
 		4F7294942B09807A00114DC1 /* FillUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7294932B09807A00114DC1 /* FillUp.swift */; };
+		4F81CBB92B0D82FB0059E95F /* AddFillUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F81CBB82B0D82FB0059E95F /* AddFillUpButton.swift */; };
 		4FEC8C7E2B0A7BB4002DAFEB /* FillUpFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC8C7D2B0A7BB4002DAFEB /* FillUpFormView.swift */; };
-		4FEF4CE02B0C4394007900D2 /* FillUpsTopThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF4CDF2B0C4394007900D2 /* FillUpsTopThree.swift */; };
+		4FEF4CE02B0C4394007900D2 /* FillUpsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF4CDF2B0C4394007900D2 /* FillUpsListView.swift */; };
+		4FEF4CE22B0D7EB2007900D2 /* VehicleFillUpsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF4CE12B0D7EB2007900D2 /* VehicleFillUpsCardView.swift */; };
 		4FF47EDE2B0434D1001829EE /* commutr_v2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF47EDD2B0434D1001829EE /* commutr_v2App.swift */; };
 		4FF47EE02B0434D1001829EE /* VehicleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF47EDF2B0434D1001829EE /* VehicleListView.swift */; };
 		4FF47EE42B0434D2001829EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FF47EE32B0434D2001829EE /* Assets.xcassets */; };
@@ -41,11 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F33144A2B0DA861003934B3 /* MathUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathUtils.swift; sourceTree = "<group>"; };
 		4F72948E2B09228300114DC1 /* VehicleListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListItem.swift; sourceTree = "<group>"; };
 		4F7294902B096BE900114DC1 /* VehicleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetailView.swift; sourceTree = "<group>"; };
 		4F7294932B09807A00114DC1 /* FillUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillUp.swift; sourceTree = "<group>"; };
+		4F81CBB82B0D82FB0059E95F /* AddFillUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFillUpButton.swift; sourceTree = "<group>"; };
 		4FEC8C7D2B0A7BB4002DAFEB /* FillUpFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillUpFormView.swift; sourceTree = "<group>"; };
-		4FEF4CDF2B0C4394007900D2 /* FillUpsTopThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillUpsTopThree.swift; sourceTree = "<group>"; };
+		4FEF4CDF2B0C4394007900D2 /* FillUpsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillUpsListView.swift; sourceTree = "<group>"; };
+		4FEF4CE12B0D7EB2007900D2 /* VehicleFillUpsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleFillUpsCardView.swift; sourceTree = "<group>"; };
 		4FF47EDA2B0434D1001829EE /* commutr_v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = commutr_v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FF47EDD2B0434D1001829EE /* commutr_v2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commutr_v2App.swift; sourceTree = "<group>"; };
 		4FF47EDF2B0434D1001829EE /* VehicleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListView.swift; sourceTree = "<group>"; };
@@ -92,7 +98,9 @@
 			children = (
 				4F7294932B09807A00114DC1 /* FillUp.swift */,
 				4FEC8C7D2B0A7BB4002DAFEB /* FillUpFormView.swift */,
-				4FEF4CDF2B0C4394007900D2 /* FillUpsTopThree.swift */,
+				4FEF4CDF2B0C4394007900D2 /* FillUpsListView.swift */,
+				4FEF4CE12B0D7EB2007900D2 /* VehicleFillUpsCardView.swift */,
+				4F81CBB82B0D82FB0059E95F /* AddFillUpButton.swift */,
 			);
 			path = FillUps;
 			sourceTree = "<group>";
@@ -100,6 +108,7 @@
 		4F7294952B09845100114DC1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				4F33144A2B0DA861003934B3 /* MathUtils.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -316,11 +325,14 @@
 			files = (
 				4F7294942B09807A00114DC1 /* FillUp.swift in Sources */,
 				4F7294912B096BE900114DC1 /* VehicleDetailView.swift in Sources */,
-				4FEF4CE02B0C4394007900D2 /* FillUpsTopThree.swift in Sources */,
+				4FEF4CE02B0C4394007900D2 /* FillUpsListView.swift in Sources */,
 				4FF47F0C2B04357D001829EE /* Vehicle.swift in Sources */,
 				4FEC8C7E2B0A7BB4002DAFEB /* FillUpFormView.swift in Sources */,
+				4FEF4CE22B0D7EB2007900D2 /* VehicleFillUpsCardView.swift in Sources */,
 				4F72948F2B09228300114DC1 /* VehicleListItem.swift in Sources */,
 				4FF47EE02B0434D1001829EE /* VehicleListView.swift in Sources */,
+				4F81CBB92B0D82FB0059E95F /* AddFillUpButton.swift in Sources */,
+				4F33144B2B0DA861003934B3 /* MathUtils.swift in Sources */,
 				4FF47EDE2B0434D1001829EE /* commutr_v2App.swift in Sources */,
 				4FF47F102B0476B1001829EE /* VehicleFormView.swift in Sources */,
 			);

@@ -11,47 +11,17 @@ import SwiftData
 struct VehicleDetailView: View {
     var vehicle: Vehicle
     
-    @State var isEditing = false
-    @State var fillUpId: FillUp.ID?
-    
     var body: some View {
         ZStack {
             VStack() {
-                FillUpsTopThree(vehicleId: vehicle.id, edit: editFillUp)
-            }
+                VehicleFillUpsCardView(vehicle: vehicle)
+            }.padding(.bottom, 80)
             VStack {
                 Spacer()
-                Button(action: addFillUp) {
-                    Text("Add Fill Up")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                }
-                .foregroundColor(.white)
-                .background(.teal)
-                .cornerRadius(10)
+                AddFillUpButton(vehicle: vehicle)
             }.padding(.horizontal, 20)
         }
         .navigationTitle("\(vehicle.getName())")
-        .sheet(isPresented: $isEditing){
-            NavigationStack{
-                FillUpFormView(fillUpId: $fillUpId, vehicle: vehicle, onClose: closeModal)
-            }
-        }
-    }
-    
-    private func editFillUp(id: FillUp.ID) {
-        fillUpId = id
-        isEditing = true
-    }
-    
-    private func addFillUp() {
-        fillUpId = nil
-        isEditing = true
-    }
-    
-    private func closeModal() {
-        fillUpId = nil
-        isEditing = false
     }
 }
 

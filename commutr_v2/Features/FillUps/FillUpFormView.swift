@@ -133,26 +133,11 @@ class FillUpFormModel : ObservableObject {
     var notes = ""
     
     var total: Decimal {
-        if let fuelAmount = self.fuelAmount,
-           let price = self.pricePerFuelAmount {
-            var result = fuelAmount * price
-            var rounded = Decimal()
-            NSDecimalRound(&rounded, &result, 2, .bankers)
-            return rounded
-        }
-        return 0
+        return MathUtils.totalCost(fuelAmount: self.fuelAmount, pricePerFuelAmount: self.pricePerFuelAmount)
     }
     
     var fuelEconomy: Decimal {
-        if let fuelAmount = self.fuelAmount,
-           let distance = self.distance {
-            var result = fuelAmount != 0 ? distance / fuelAmount : 0
-            var rounded = Decimal()
-            NSDecimalRound(&rounded, &result, 2, .bankers)
-            return rounded
-        }
-        
-        return 0
+        return MathUtils.fuelEconomy(fuelAmount: self.fuelAmount, distance: self.distance)
     }
 }
 

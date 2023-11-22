@@ -42,21 +42,12 @@ final class FillUp : Identifiable {
         self.notes = notes
     }
     
-    public func total() -> Decimal {
-        if let fuelAmount = self.fuelAmount,
-           let price = self.pricePerFuelAmount {
-            return fuelAmount * price
-        }
-        return 0
+    var total: Decimal {
+        return MathUtils.totalCost(fuelAmount: self.fuelAmount, pricePerFuelAmount: self.pricePerFuelAmount)
     }
     
-    public func fuelEconomy() -> Decimal {
-        if let fuelAmount = self.fuelAmount,
-           let distance = self.distance {
-            return fuelAmount != 0 ? distance / fuelAmount : 0
-        }
-        
-        return 0
+    var fuelEconomy: Decimal {
+        return MathUtils.fuelEconomy(fuelAmount: self.fuelAmount, distance: self.distance)
     }
 }
 
