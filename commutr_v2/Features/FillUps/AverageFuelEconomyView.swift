@@ -26,21 +26,21 @@ struct AverageFuelEconomyView: View {
     
     var body: some View {
         VStack {
-            ZStack() {
-                GuageView(percentage: Double(truncating: average() as NSNumber) / Double(60))
-                    .padding(.top, 5)
-                VStack{
-                    Spacer()
-                    Text("\(String(describing: average())) MPG")
-                        .font(.title)
-                }
-            }
-            .padding(15)
+            GuageView(percentage: Double(truncating: average() as NSNumber) / Double(60))
+                .overlay(
+                    VStack {
+                        Text("\(String(describing: average()))")
+                            .font(.title)
+                        Text("MPG")
+                    }.multilineTextAlignment(.center)
+                        .padding(20)
+                )
         }
-        .frame(maxHeight: 150)
+        .frame(maxWidth: 200, minHeight: 150)
         .background(Color(.secondarySystemGroupedBackground))
         .cornerRadius(10)
-
+        .padding(10)
+        
     }
     
     private func average() -> Decimal {

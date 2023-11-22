@@ -10,11 +10,12 @@ import SwiftUI
 struct GuageView: View {
     var percentage: Double
     var color = Color(.accent)
+    @State var drawingStroke = false
     
     var body: some View {
         ZStack {
             Circle()
-                .trim(from: 0, to: 0.5)
+                .trim(from: 0, to: 0.75)
                 .stroke(
                     color.opacity(0.40),
                     style: StrokeStyle(
@@ -22,10 +23,10 @@ struct GuageView: View {
                         lineCap: .round
                     )
                 )
-                .rotationEffect(.degrees(-180))
+                .rotationEffect(.degrees(-225))
             
             Circle()
-                .trim(from: 0, to: min(0.5 * CGFloat(percentage), 0.5))
+                .trim(from: 0, to: drawingStroke ? min(0.75 * CGFloat(percentage), 0.5) : .leastNonzeroMagnitude)
                 .stroke(
                     color,
                     style: StrokeStyle(
@@ -33,8 +34,14 @@ struct GuageView: View {
                         lineCap: .round
                     )
                 )
-                .rotationEffect(.degrees(-180))
-        }.padding(.horizontal, 10)
+                .animation(Animation.easeIn(duration: 2).delay(0.25), value: drawingStroke)
+
+                .rotationEffect(.degrees(-225))
+        }
+        .padding(15)
+        .onAppear(){
+            drawingStroke = true
+        }
     }
 }
 
