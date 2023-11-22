@@ -9,12 +9,10 @@ import Foundation
 
 class MathUtils {
     static func fuelEconomy(fuelAmount: Decimal?, distance: Decimal?) -> Decimal {
-        if let f = fuelAmount,
+        if let fuel = fuelAmount,
            let d = distance {
-            var result = f != 0 ? d / f : 0
-            var rounded = Decimal()
-            NSDecimalRound(&rounded, &result, 2, .bankers)
-            return rounded
+            var result = fuel != 0 ? d / fuel : 0
+            return self.round(decimal: result, scale: 2, mode: .bankers)
         }
         
         return 0
@@ -24,10 +22,15 @@ class MathUtils {
         if let fuel = fuelAmount,
            let price = pricePerFuelAmount {
             var result = fuel * price
-            var rounded = Decimal()
-            NSDecimalRound(&rounded, &result, 2, .bankers)
-            return rounded
+            return self.round(decimal: result, scale: 2, mode: .bankers)
         }
         return 0
+    }
+    
+    static func round(decimal: Decimal, scale: Int, mode: NSDecimalNumber.RoundingMode) -> Decimal{
+        var copy = decimal
+        var rounded = Decimal()
+        NSDecimalRound(&rounded, &copy, scale, mode)
+        return rounded
     }
 }

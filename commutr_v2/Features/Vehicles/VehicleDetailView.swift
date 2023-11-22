@@ -13,13 +13,24 @@ struct VehicleDetailView: View {
     
     var body: some View {
         ZStack {
-            VStack() {
+            VStack(spacing: 0) {
+                HStack {
+                    Spacer()
+                    AverageFuelEconomyView(vehicleId: vehicle.id)
+                    Spacer()
+                }
+                .background(Color(.systemGroupedBackground))
+                .padding(.top, 20)
+                
                 VehicleFillUpsCardView(vehicle: vehicle)
-            }.padding(.bottom, 80)
+            }
+            .padding(.bottom, 80)
+            
             VStack {
                 Spacer()
                 AddFillUpButton(vehicle: vehicle)
-            }.padding(.horizontal, 20)
+            }
+            .padding(.horizontal, 20)
         }
         .navigationTitle("\(vehicle.getName())")
     }

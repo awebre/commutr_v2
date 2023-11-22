@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4F33144B2B0DA861003934B3 /* MathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F33144A2B0DA861003934B3 /* MathUtils.swift */; };
+		4F35F3532B0DB9F900D0AD49 /* AverageFuelEconomyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F35F3522B0DB9F900D0AD49 /* AverageFuelEconomyView.swift */; };
+		4F35F3562B0DCE2000D0AD49 /* GuageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F35F3552B0DCE2000D0AD49 /* GuageView.swift */; };
 		4F72948F2B09228300114DC1 /* VehicleListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F72948E2B09228300114DC1 /* VehicleListItem.swift */; };
 		4F7294912B096BE900114DC1 /* VehicleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7294902B096BE900114DC1 /* VehicleDetailView.swift */; };
 		4F7294942B09807A00114DC1 /* FillUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7294932B09807A00114DC1 /* FillUp.swift */; };
@@ -45,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		4F33144A2B0DA861003934B3 /* MathUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathUtils.swift; sourceTree = "<group>"; };
+		4F35F3522B0DB9F900D0AD49 /* AverageFuelEconomyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageFuelEconomyView.swift; sourceTree = "<group>"; };
+		4F35F3552B0DCE2000D0AD49 /* GuageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuageView.swift; sourceTree = "<group>"; };
 		4F72948E2B09228300114DC1 /* VehicleListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListItem.swift; sourceTree = "<group>"; };
 		4F7294902B096BE900114DC1 /* VehicleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetailView.swift; sourceTree = "<group>"; };
 		4F7294932B09807A00114DC1 /* FillUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillUp.swift; sourceTree = "<group>"; };
@@ -93,6 +97,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F35F3542B0DCE0C00D0AD49 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4F35F3552B0DCE2000D0AD49 /* GuageView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		4F7294922B09806B00114DC1 /* FillUps */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +113,7 @@
 				4FEF4CDF2B0C4394007900D2 /* FillUpsListView.swift */,
 				4FEF4CE12B0D7EB2007900D2 /* VehicleFillUpsCardView.swift */,
 				4F81CBB82B0D82FB0059E95F /* AddFillUpButton.swift */,
+				4F35F3522B0DB9F900D0AD49 /* AverageFuelEconomyView.swift */,
 			);
 			path = FillUps;
 			sourceTree = "<group>";
@@ -108,6 +121,7 @@
 		4F7294952B09845100114DC1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				4F35F3542B0DCE0C00D0AD49 /* Components */,
 				4F33144A2B0DA861003934B3 /* MathUtils.swift */,
 			);
 			path = Shared;
@@ -331,6 +345,8 @@
 				4FEF4CE22B0D7EB2007900D2 /* VehicleFillUpsCardView.swift in Sources */,
 				4F72948F2B09228300114DC1 /* VehicleListItem.swift in Sources */,
 				4FF47EE02B0434D1001829EE /* VehicleListView.swift in Sources */,
+				4F35F3562B0DCE2000D0AD49 /* GuageView.swift in Sources */,
+				4F35F3532B0DB9F900D0AD49 /* AverageFuelEconomyView.swift in Sources */,
 				4F81CBB92B0D82FB0059E95F /* AddFillUpButton.swift in Sources */,
 				4F33144B2B0DA861003934B3 /* MathUtils.swift in Sources */,
 				4FF47EDE2B0434D1001829EE /* commutr_v2App.swift in Sources */,
