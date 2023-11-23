@@ -42,7 +42,7 @@ struct FillUpsListView: View {
     
     var body: some View {
         List {
-            Section(footer: SeeMoreButton(showAll: showAll, onToggleShowAll: onToggleShowAll)) {
+            Section(footer: SeeMoreButton(showAll: showAll, onToggleShowAll: onToggleShowAll, hideButton: fillUps.count <= 3)) {
                 ForEach(fillUps) { fillUp in
                     VStack {
                         HStack {
@@ -113,12 +113,17 @@ struct FillUpsListView: View {
 struct SeeMoreButton: View {
     var showAll: Bool
     var onToggleShowAll: () -> Void
+    var hideButton = false
 
     var body: some View {
-        HStack(){
-            Spacer()
-            Button("See \(showAll ? "Less" : "More")", action: onToggleShowAll)
-            Spacer()
+        if(hideButton){
+            EmptyView()
+        } else {
+            HStack(){
+                Spacer()
+                Button("See \(showAll ? "Less" : "More")", action: onToggleShowAll)
+                Spacer()
+            }
         }
     }
 }
