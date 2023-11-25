@@ -56,7 +56,7 @@
 		4FEC8C7D2B0A7BB4002DAFEB /* FillUpFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillUpFormView.swift; sourceTree = "<group>"; };
 		4FEF4CDF2B0C4394007900D2 /* FillUpsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillUpsListView.swift; sourceTree = "<group>"; };
 		4FEF4CE12B0D7EB2007900D2 /* VehicleFillUpsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleFillUpsCardView.swift; sourceTree = "<group>"; };
-		4FF47EDA2B0434D1001829EE /* commutr_v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = commutr_v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FF47EDA2B0434D1001829EE /* Daily Commutr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Commutr.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FF47EDD2B0434D1001829EE /* commutr_v2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commutr_v2App.swift; sourceTree = "<group>"; };
 		4FF47EDF2B0434D1001829EE /* VehicleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListView.swift; sourceTree = "<group>"; };
 		4FF47EE32B0434D2001829EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 		4FF47EDB2B0434D1001829EE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4FF47EDA2B0434D1001829EE /* commutr_v2.app */,
+				4FF47EDA2B0434D1001829EE /* Daily Commutr.app */,
 				4FF47EEE2B0434D2001829EE /* commutr_v2Tests.xctest */,
 				4FF47EF82B0434D2001829EE /* commutr_v2UITests.xctest */,
 			);
@@ -224,7 +224,7 @@
 			);
 			name = commutr_v2;
 			productName = commutr_v2;
-			productReference = 4FF47EDA2B0434D1001829EE /* commutr_v2.app */;
+			productReference = 4FF47EDA2B0434D1001829EE /* Daily Commutr.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4FF47EED2B0434D2001829EE /* commutr_v2Tests */ = {
@@ -519,6 +519,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = commutr_v2/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Daily Commutr";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -528,9 +530,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.thewebres.commutr;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.austinwebre.commutr;
+				PRODUCT_NAME = "Daily Commutr";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -550,6 +552,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = commutr_v2/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Daily Commutr";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -559,9 +563,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.thewebres.commutr;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.austinwebre.commutr;
+				PRODUCT_NAME = "Daily Commutr";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

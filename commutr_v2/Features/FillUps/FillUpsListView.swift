@@ -42,7 +42,7 @@ struct FillUpsListView: View {
     
     var body: some View {
         List {
-            Section(footer: SeeMoreButton(showAll: showAll, onToggleShowAll: onToggleShowAll, hideButton: fillUps.count <= 3)) {
+            Section(footer: SeeMoreButton(showAll: showAll, onToggleShowAll: onToggleShowAll, hideButton: fillUps.count < 3)) {
                 ForEach(fillUps) { fillUp in
                     VStack {
                         HStack {
