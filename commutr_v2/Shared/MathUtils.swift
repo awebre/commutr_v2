@@ -11,7 +11,7 @@ class MathUtils {
     static func fuelEconomy(fuelAmount: Decimal?, distance: Decimal?) -> Decimal {
         if let fuel = fuelAmount,
            let d = distance {
-            var result = fuel != 0 ? d / fuel : 0
+            let result = fuel != 0 ? d / fuel : 0
             return self.round(decimal: result, scale: 2, mode: .bankers)
         }
         
@@ -21,7 +21,7 @@ class MathUtils {
     static func totalCost(fuelAmount: Decimal?, pricePerFuelAmount: Decimal?) -> Decimal {
         if let fuel = fuelAmount,
            let price = pricePerFuelAmount {
-            var result = fuel * price
+            let result = fuel * price
             return self.round(decimal: result, scale: 2, mode: .bankers)
         }
         return 0
