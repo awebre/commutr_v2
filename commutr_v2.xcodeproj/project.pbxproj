@@ -14,6 +14,8 @@
 		4F7294912B096BE900114DC1 /* VehicleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7294902B096BE900114DC1 /* VehicleDetailView.swift */; };
 		4F7294942B09807A00114DC1 /* FillUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7294932B09807A00114DC1 /* FillUp.swift */; };
 		4F81CBB92B0D82FB0059E95F /* AddFillUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F81CBB82B0D82FB0059E95F /* AddFillUpButton.swift */; };
+		4FB7B23A2B6365C6009E3362 /* AverageDistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7B2392B6365C6009E3362 /* AverageDistanceView.swift */; };
+		4FB7B23C2B6368B9009E3362 /* AveragePriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7B23B2B6368B9009E3362 /* AveragePriceView.swift */; };
 		4FEC8C7E2B0A7BB4002DAFEB /* FillUpFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC8C7D2B0A7BB4002DAFEB /* FillUpFormView.swift */; };
 		4FEF4CE02B0C4394007900D2 /* FillUpsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF4CDF2B0C4394007900D2 /* FillUpsListView.swift */; };
 		4FEF4CE22B0D7EB2007900D2 /* VehicleFillUpsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF4CE12B0D7EB2007900D2 /* VehicleFillUpsCardView.swift */; };
@@ -53,6 +55,8 @@
 		4F7294902B096BE900114DC1 /* VehicleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetailView.swift; sourceTree = "<group>"; };
 		4F7294932B09807A00114DC1 /* FillUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillUp.swift; sourceTree = "<group>"; };
 		4F81CBB82B0D82FB0059E95F /* AddFillUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFillUpButton.swift; sourceTree = "<group>"; };
+		4FB7B2392B6365C6009E3362 /* AverageDistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageDistanceView.swift; sourceTree = "<group>"; };
+		4FB7B23B2B6368B9009E3362 /* AveragePriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AveragePriceView.swift; sourceTree = "<group>"; };
 		4FEC8C7D2B0A7BB4002DAFEB /* FillUpFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillUpFormView.swift; sourceTree = "<group>"; };
 		4FEF4CDF2B0C4394007900D2 /* FillUpsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillUpsListView.swift; sourceTree = "<group>"; };
 		4FEF4CE12B0D7EB2007900D2 /* VehicleFillUpsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleFillUpsCardView.swift; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 				4FEF4CE12B0D7EB2007900D2 /* VehicleFillUpsCardView.swift */,
 				4F81CBB82B0D82FB0059E95F /* AddFillUpButton.swift */,
 				4F35F3522B0DB9F900D0AD49 /* AverageFuelEconomyView.swift */,
+				4FB7B2392B6365C6009E3362 /* AverageDistanceView.swift */,
+				4FB7B23B2B6368B9009E3362 /* AveragePriceView.swift */,
 			);
 			path = FillUps;
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F7294942B09807A00114DC1 /* FillUp.swift in Sources */,
+				4FB7B23A2B6365C6009E3362 /* AverageDistanceView.swift in Sources */,
 				4F7294912B096BE900114DC1 /* VehicleDetailView.swift in Sources */,
 				4FEF4CE02B0C4394007900D2 /* FillUpsListView.swift in Sources */,
 				4FF47F0C2B04357D001829EE /* Vehicle.swift in Sources */,
@@ -346,6 +353,7 @@
 				4F72948F2B09228300114DC1 /* VehicleListItem.swift in Sources */,
 				4FF47EE02B0434D1001829EE /* VehicleListView.swift in Sources */,
 				4F35F3562B0DCE2000D0AD49 /* GuageView.swift in Sources */,
+				4FB7B23C2B6368B9009E3362 /* AveragePriceView.swift in Sources */,
 				4F35F3532B0DB9F900D0AD49 /* AverageFuelEconomyView.swift in Sources */,
 				4F81CBB92B0D82FB0059E95F /* AddFillUpButton.swift in Sources */,
 				4F33144B2B0DA861003934B3 /* MathUtils.swift in Sources */,

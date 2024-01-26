@@ -14,13 +14,20 @@ struct VehicleDetailView: View {
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                HStack {
-                    Spacer()
-                    AverageFuelEconomyView(vehicleId: vehicle.id)
-                    Spacer()
+                ScrollView(.horizontal){
+                    HStack {
+                        Spacer()
+                        AverageFuelEconomyView(vehicleId: vehicle.id)
+                        Spacer()
+                        AverageDistanceView(vehicleId: vehicle.id)
+                        Spacer()
+                        AveragePriceView(vehicleId: vehicle.id)
+                        Spacer()
+                    }
                 }
                 .background(Color(.systemGroupedBackground))
                 .padding(.top, 20)
+
                 
                 VehicleFillUpsCardView(vehicle: vehicle)
             }

@@ -1,16 +1,15 @@
 //
-//  AverageFuelEconomyView.swift
+//  AveragePriceView.swift
 //  commutr_v2
 //
-//  Created by Austin Webre on 11/21/23.
+//  Created by Austin Webre on 1/25/24.
 //
 
 import SwiftUI
 import SwiftData
 
-struct AverageFuelEconomyView: View {
+struct AveragePriceView: View {
     @Query private var fillUps: [FillUp]
-    
     init(vehicleId: Vehicle.ID) {
         let defaultDate = Date.now //hack for option date filter
         let minDate = Calendar.current.date(byAdding: .month, value: -3, to: Date.now) ?? Date.now
@@ -32,14 +31,14 @@ struct AverageFuelEconomyView: View {
                 GuageView(percentage: Double(truncating: average() as NSNumber) / Double(60))
                     .overlay(
                         VStack {
-                            Text("\(String(describing: average()))")
+                            Text("$\(String(describing: average()))")
                                 .font(.title)
-                            Text("MPG")
+                            Text("Cost")
                         }.multilineTextAlignment(.center)
                             .padding(20)
                     )
             }
-            .frame(width: 175, height: 175)
+            .frame(maxWidth: 175, maxHeight: 175)
             .background(Color(.secondarySystemGroupedBackground))
             .cornerRadius(10)
             .padding(10)
@@ -47,12 +46,8 @@ struct AverageFuelEconomyView: View {
     }
     
     private func average() -> Decimal {
-        let totalFuelEconomy = fillUps.map({$0.fuelEconomy}).reduce(0, +)
-        let average = totalFuelEconomy / Decimal(fillUps.count)
+        let totalDistance = fillUps.map({$0.total}).reduce(0, +)
+        let average = totalDistance / Decimal(fillUps.count)
         return MathUtils.round(decimal: average, scale: 2, mode: .bankers)
     }
 }
-
-//#Preview {
-//    AverageFuelEconomyView()
-//}
