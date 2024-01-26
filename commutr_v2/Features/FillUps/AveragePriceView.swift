@@ -28,7 +28,7 @@ struct AveragePriceView: View {
             EmptyView()
         } else {
             VStack {
-                GuageView(percentage: Double(truncating: average() as NSNumber) / Double(60))
+                GuageView(percentage: Double(truncating: average() as NSNumber) / Double(80))
                     .overlay(
                         VStack {
                             Text("$\(String(describing: average()))")
