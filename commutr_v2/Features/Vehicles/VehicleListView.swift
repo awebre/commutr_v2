@@ -26,9 +26,14 @@ struct VehicleListView: View {
             }
             .navigationTitle("Your Vehicles")
             .toolbar {
-                ToolbarItem {
-                    Button(action: openAddModal) {
-                        Label("Add Item", systemImage: "plus")
+                if #available(iOS 26.0, *) {
+                    ToolbarSpacer(placement: .bottomBar)
+                    ToolbarItem(placement: .bottomBar) {
+                        Button("Add Item", systemImage: "plus", role: .confirm, action: openAddModal)
+                    }
+                } else {
+                    ToolbarItem {
+                        Button("Add Item", systemImage: "plus", action: openAddModal)
                     }
                 }
             }

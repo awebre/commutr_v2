@@ -10,6 +10,8 @@ import SwiftData
 
 struct FillUpsListView: View {
     @Environment(\.modelContext) private var modelContext
+    
+    let seeMoreLimit = 20
 
     @Query private var fillUps: [FillUp]
     var edit: (FillUp.ID) -> Void
@@ -31,7 +33,7 @@ struct FillUpsListView: View {
                                                  sortBy: [SortDescriptor(\.date, order: .reverse)])
         
         if(!showAll) {
-            descriptor.fetchLimit = 3
+            descriptor.fetchLimit = seeMoreLimit
         }
         
         _fillUps = Query(descriptor)
@@ -42,7 +44,7 @@ struct FillUpsListView: View {
     
     var body: some View {
         List {
-            Section(footer: SeeMoreButton(showAll: showAll, onToggleShowAll: onToggleShowAll, hideButton: fillUps.count < 3)) {
+            Section(footer: SeeMoreButton(showAll: showAll, onToggleShowAll: onToggleShowAll, hideButton: fillUps.count < seeMoreLimit)) {
                 ForEach(fillUps) { fillUp in
                     VStack {
                         HStack {
@@ -116,14 +118,17 @@ struct SeeMoreButton: View {
     var hideButton = false
 
     var body: some View {
-        if(hideButton){
-            EmptyView()
-        } else {
-            HStack(){
-                Spacer()
-                Button("See \(showAll ? "Less" : "More")", action: onToggleShowAll)
-                Spacer()
+        VStack {
+            if(hideButton){
+                EmptyView()
+            } else {
+                HStack(){
+                    Spacer()
+                    Button("See \(showAll ? "Less" : "More")", action: onToggleShowAll)
+                    Spacer()
+                }
             }
+            Color.clear.frame(height: 80)
         }
     }
 }

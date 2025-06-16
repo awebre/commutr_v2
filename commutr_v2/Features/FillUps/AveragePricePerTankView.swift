@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct AveragePriceView: View {
+struct AveragePricePerTankView: View {
     @Query private var fillUps: [FillUp]
     init(vehicleId: Vehicle.ID) {
         let defaultDate = Date.now //hack for option date filter
@@ -33,7 +33,7 @@ struct AveragePriceView: View {
                         VStack {
                             Text("$\(String(describing: average()))")
                                 .font(.title)
-                            Text("Cost")
+                            Text("Average Cost per Tank")
                         }.multilineTextAlignment(.center)
                             .padding(20)
                     )
@@ -41,13 +41,12 @@ struct AveragePriceView: View {
             .frame(maxWidth: 175, maxHeight: 175)
             .background(Color(.secondarySystemGroupedBackground))
             .cornerRadius(10)
-            .padding(10)
         }
     }
     
     private func average() -> Decimal {
-        let totalDistance = fillUps.map({$0.total}).reduce(0, +)
-        let average = totalDistance / Decimal(fillUps.count)
+        let totalCost = fillUps.map({$0.total}).reduce(0, +)
+        let average = totalCost / Decimal(fillUps.count)
         return MathUtils.round(decimal: average, scale: 2, mode: .bankers)
     }
 }

@@ -1,14 +1,14 @@
 //
-//  AverageDistanceView.swift
+//  AveragePricePerGallonView.swift
 //  commutr_v2
 //
-//  Created by Austin Webre on 1/25/24.
+//  Created by Austin Webre on 6/16/25.
 //
 
 import SwiftUI
 import SwiftData
 
-struct AverageDistanceView: View {
+struct AveragePricePerGallonView: View {
     @Query private var fillUps: [FillUp]
     init(vehicleId: Vehicle.ID) {
         let defaultDate = Date.now //hack for option date filter
@@ -22,17 +22,18 @@ struct AverageDistanceView: View {
         
         _fillUps = Query(descriptor)
     }
+    
     var body: some View {
         if(fillUps.count < 1) {
             EmptyView()
         } else {
             VStack {
-                GuageView(percentage: Double(truncating: average() as NSNumber) / Double(550))
+                GuageView(percentage: Double(truncating: average() as NSNumber) / Double(80))
                     .overlay(
                         VStack {
-                            Text("\(String(describing: average()))")
+                            Text("$\(String(describing: average()))")
                                 .font(.title)
-                            Text("Average Range")
+                            Text("Average Cost per Gallon")
                         }.multilineTextAlignment(.center)
                             .padding(20)
                     )
@@ -44,8 +45,16 @@ struct AverageDistanceView: View {
     }
     
     private func average() -> Decimal {
-        let totalDistance = fillUps.map({$0.distance ?? 0}).reduce(0, +)
-        let average = totalDistance / Decimal(fillUps.count)
+        let validPrices = fillUps.compactMap { $0.pricePerFuelAmount }
+        guard !validPrices.isEmpty else { return 0 }
+        let totalCost = validPrices.reduce(Decimal(0), +)
+        let average = totalCost / Decimal(validPrices.count)
         return MathUtils.round(decimal: average, scale: 2, mode: .bankers)
     }
+}
+
+#Preview {
+    let container = ModelContainer.previewContainer()
+    let vehicle = try! container.mainContext.fetch(FetchDescriptor<Vehicle>()).first!
+    AveragePricePerGallonView(vehicleId: vehicle.id)
 }

@@ -34,7 +34,7 @@ struct AverageFuelEconomyView: View {
                         VStack {
                             Text("\(String(describing: average()))")
                                 .font(.title)
-                            Text("MPG")
+                            Text("Average MPG")
                         }.multilineTextAlignment(.center)
                             .padding(20)
                     )
@@ -42,7 +42,6 @@ struct AverageFuelEconomyView: View {
             .frame(width: 175, height: 175)
             .background(Color(.secondarySystemGroupedBackground))
             .cornerRadius(10)
-            .padding(10)
         }
     }
     

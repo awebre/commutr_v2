@@ -28,12 +28,17 @@ struct VehicleFormView: View {
         .navigationTitle(vehicleId != nil ? "Edit \(model.make) \(model.model) \(model.year)" : "Add Vehicle")
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button("Cancel", action: onClose)
+                Button("Cancel", systemImage: "xmark", action: onClose)
             }
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Save", action: save)
+                if #available(iOS 26.0, *) {
+                    Button("Save", systemImage: "checkmark", role: .confirm, action: save)
+
+                } else {
+                    Button("Save", systemImage: "checkmark", action: save)
+                }
             }
         }
         .onAppear(){

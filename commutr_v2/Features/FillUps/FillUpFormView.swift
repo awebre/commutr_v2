@@ -64,12 +64,19 @@ struct FillUpFormView: View {
         .navigationTitle(fillUpId != nil ? "Update Fill Up" : "Add New Fill Up")
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button("Cancel", action: onClose)
+                Button("Cancel", systemImage: "xmark", action: onClose)
+                    .foregroundColor(.accent)
             }
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Save", action: save)
+                if #available(iOS 26.0, *) {
+                    Button("Save", systemImage: "checkmark", role: .confirm, action: save)
+                        .foregroundColor(.accentText)
+                } else {
+                    Button("Save", systemImage: "checkmark", action: save)
+                }
+
             }
         }
         .toolbar {

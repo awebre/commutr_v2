@@ -11,17 +11,32 @@ struct AddFillUpButton: View {
     var vehicle: Vehicle
     @State var isAdding = false
     var body: some View {
-        Button(action: { isAdding = true }) {
-            Text("Add Fill Up")
-                .frame(maxWidth: .infinity)
-                .padding()
-        }
-        .foregroundColor(.accentText)
-        .background(.accent)
-        .cornerRadius(10)
-        .sheet(isPresented: $isAdding){
-            NavigationStack{
-                FillUpFormView(fillUpId: Binding.constant(nil), vehicle: vehicle, onClose: { isAdding = false })
+        if #available(iOS 26.0, *) {
+            Button("Add Fill Up", systemImage: "plus", role: .confirm) {
+                isAdding = true
+            }
+            .foregroundColor(.accentText)
+            .background(.accent)
+            .cornerRadius(10)
+            .sheet(isPresented: $isAdding){
+                NavigationStack{
+                    FillUpFormView(fillUpId: Binding.constant(nil), vehicle: vehicle, onClose: { isAdding = false })
+                }
+            }
+        } else {
+            Button(action: { isAdding = true }) {
+                Text("Add Fill Up")
+                    .frame(maxWidth: .infinity)
+                    .padding()
+            }
+            .buttonStyle(.borderedProminent)
+            .foregroundColor(.accentText)
+            .background(.accent)
+            .cornerRadius(10)
+            .sheet(isPresented: $isAdding){
+                NavigationStack{
+                    FillUpFormView(fillUpId: Binding.constant(nil), vehicle: vehicle, onClose: { isAdding = false })
+                }
             }
         }
     }
